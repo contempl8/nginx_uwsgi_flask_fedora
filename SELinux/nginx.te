@@ -1,0 +1,19 @@
+module nginx 1.0;
+
+require {
+	type unconfined_t;
+	type var_t;
+	type httpd_t;
+	type unconfined_service_t;
+	class sock_file write;
+	class unix_stream_socket connectto;
+	class file { getattr open read };
+}
+
+#============= httpd_t ==============
+
+allow httpd_t unconfined_service_t:unix_stream_socket connectto;
+allow httpd_t unconfined_t:unix_stream_socket connectto;
+allow httpd_t var_t:sock_file write;
+allow httpd_t var_t:file { open read };
+allow httpd_t var_t:file getattr;

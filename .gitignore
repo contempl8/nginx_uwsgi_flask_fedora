@@ -1,0 +1,5 @@
+venv/
+*.sock
+*.pp
+*.mod
+__pycache__/

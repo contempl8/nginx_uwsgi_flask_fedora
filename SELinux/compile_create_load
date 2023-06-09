@@ -1,0 +1,15 @@
+#!/usr/bin/bash
+
+# Compile Command
+checkmodule -M -m -o nginx.mod nginx.te
+checkmodule -M -m -o uwsgi_connectto.mod uwsgi_connectto.te
+
+# Create Package
+semodule_package -o nginx.pp -m nginx.mod
+sudo semodule -i nginx.pp
+
+semodule_package -o uwsgi_connectto.pp -m uwsgi_connectto.mod
+sudo semodule -i uwsgi_connectto.pp
+
+# Load new Policy
+sudo load_policy
