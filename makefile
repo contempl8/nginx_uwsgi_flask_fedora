@@ -1,4 +1,4 @@
-all: build_venv setup_system_deps install_files create_policies enable_services
+all: build_venv setup_system_deps install_files create_policies firewall_rules enable_services
 
 build_venv:
 	# Create venv if it does not exist
@@ -36,6 +36,10 @@ create_policies:
 	cd SELinux; \
 	./compile_create_load; \
 	cd -;
+
+firewall_rules:
+	sudo firewall-cmd --permanent --add-service=http
+	sudo firewall-cmd --runtime-to-permanent
 
 enable_services:
 	if systemctl is-active httpd; then \
