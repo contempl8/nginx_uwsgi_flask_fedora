@@ -28,7 +28,8 @@ install_files:
 	sudo cp apps/*.py /srv/flaskappdata/apps/
 	sudo cp config/*.conf /etc/nginx/conf.d/
 	sudo cp config/uwsgi.ini /etc/
-	sudo cp -r apps/static /srv/flaskappdata/apps/
+	sudo cp -r apps/static /srv/flaskappdata/apps/static_flask
+	sudo cp -r apps/templates /srv/flaskappdata/apps/
 	sudo cp -r venv /srv/flaskappdata/
 	sudo chown -R uwsgi:nginx /srv/flaskappdata
 
